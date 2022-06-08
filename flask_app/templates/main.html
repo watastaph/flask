@@ -1,0 +1,44 @@
+<h1>Main Page</h1>
+
+Name of student: <b>{{session['fullname']}}</b> <br><br>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p><b>{{message}}</b></p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<h3>Enroll Subjects</h3>
+<form action="/enroll_subjects" method="POST">
+    <label>Enter Course Code:</label>
+    <input type="text" name="course_code">
+    <label>Enter Course Description:</label>
+    <input type="text" name="course_description">
+    <label>Semester Offered</label>
+    <select name="semester">
+        <option value="1st Semester">1st Semester</option>
+        <option value="2nd Semester">2nd Semester</option>
+    </select>
+    <input type="submit" value="Enroll Subject">
+</form>
+
+<h3>Subjects Enrolled</h3>
+<table border="1">
+    <tr>
+        <th>Course Code</th>
+        <th>Course Description</th>
+        <th>Semester Offered</th>
+        <th>Action</th>
+    </tr>
+
+    {% for subject in all_subjects %}
+    <tr>
+        <td>{{subject.course_code}}</td>
+        <td>{{subject.description}}</td>
+        <td>{{subject.semester_offered}}</td>
+        <td><a href="/edit_subject/{{subject.id}}">Update</a>|<a href="/delete_subject/{{subject.id}}">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>

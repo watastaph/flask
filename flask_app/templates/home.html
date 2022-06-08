@@ -1,0 +1,25 @@
+<h3>Register User</h3>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <p><b>{{message}}</b></p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<form action="/register_user" method="POST">
+    Enter Fullname: <input type="text" name="fullname"><br><br>
+    Enter Course: <input type="text" name="course"><br><br>
+    Enter E-Mail: <input type="text" name="email"><br><br>
+    Enter Password: <input type="password" name="password"><br><br>
+    Confirm Password: <input type="password" name="cpassword"><br><br>
+    <input type="submit" value="Register Student">
+</form>
+
+<h3>Login User</h3>
+<form action="/login_user" method="POST">
+    Enter E-Mail: <input type="text" name="email"><br><br>
+    Enter Password: <input type="password" name="password"><br><br>
+    <input type="submit" value="Login">
+</form>
